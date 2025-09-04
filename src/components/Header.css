@@ -1,0 +1,272 @@
+/* components/Header/Header.css */
+
+.app-header {
+  background-color: #005566;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  flex-wrap: wrap;
+  gap: 10px;
+  z-index: 20;
+}
+
+/* Left Section */
+.header-left h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.header-left p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* Center Menu (Desktop Only) */
+.user-menu.desktop-menu {
+  flex: 1;
+  text-align: center;
+}
+
+.user-menu.desktop-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  gap: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px 20px;
+  border-radius: 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-menu.desktop-menu button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: background-color 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.user-menu.desktop-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.logout-btn {
+  color: #ff9999 !important;
+}
+
+.logout-btn:hover {
+  background-color: #aa0000 !important;
+}
+
+/* Right Section */
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.header-contact {
+  text-align: right;
+}
+
+.whatsapp-link {
+  color: #4fff82;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.helpline-note {
+  font-size: 11px;
+  margin: 4px 0 0;
+  opacity: 0.8;
+}
+
+/* Hamburger Menu Toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 20;
+  transition: transform 0.2s ease;
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  margin: 3px 0;
+  transition: all 0.3s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  border-radius: 2px;
+  position: relative;
+  display: block;
+}
+
+/* Rotate Hamburger to X */
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Menu - Slide from Left with Transform */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: #003d4a;
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+  transform: translateX(-100%);
+  transform-origin: 0 0;
+  transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-overflow-scrolling: touch;
+  z-index: 15;
+  padding: 80px 20px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu.open {
+  transform: translateX(0); /* Slide in */
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu li {
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+/* Animate list items in sequence */
+.mobile-menu.open li:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 0.1s; }
+.mobile-menu.open li:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 0.2s; }
+.mobile-menu.open li:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 0.3s; }
+
+.mobile-menu li:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateX(5px);
+}
+
+/* Overlay with Smooth Fade */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  z-index: 14;
+  opacity: 0;
+  visibility: hidden;
+  transition: background 0.45s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.45s ease;
+  pointer-events: none;
+}
+
+.menu-overlay.active {
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .user-menu.desktop-menu {
+    display: none;
+  }
+
+  .app-header {
+    padding: 12px 16px;
+  }
+
+  .header-left h1 {
+    font-size: 18px;
+  }
+
+  .header-left p,
+  .whatsapp-link,
+  .helpline-note {
+    font-size: 12px;
+  }
+}
+
+/* Force mobile-like centered layout between 600px and 636px */
+@media (min-width: 600px) and (max-width: 636px) {
+  .app-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .header-left h1 {
+  }
+
+  .header-left p {
+    font-size: 12px;
+  }
+
+  .header-right {
+    margin-top: 8px;
+  }
+
+  .whatsapp-link,
+  .helpline-note {
+    font-size: 12px;
+  }
+
+  /* Hide desktop menu, show hamburger */
+  .user-menu.desktop-menu {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
+
+}
